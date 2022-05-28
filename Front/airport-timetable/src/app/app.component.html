@@ -1,0 +1,18 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Flight Number</th>
+      <th scope="col">Departure</th>
+      <th scope="col">Arrival</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let country of infs; trackBy: identify">
+      <td> {{ country.flight_iata }} </td>
+      <td>{{ country.dep_iata }}</td>
+      <td>{{ country.arr_iata }}</td>
+      <td>{{ country.status }}</td>
+    </tr>
+  </tbody>
+</table>
