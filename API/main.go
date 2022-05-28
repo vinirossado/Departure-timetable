@@ -1,9 +1,11 @@
 package main
 
 import (
+	"departure_time_table/config"
 	"departure_time_table/controllers"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -23,7 +25,13 @@ func main() {
 
 	gin.SetMode(gin.ReleaseMode)
 
-	c := controllers.NewController()
+	collectionInstance := config.CreateCollectionInstance(
+		config.StartMongoClient(),
+		os.Getenv("MONGO_DATABASE"),
+		os.Getenv("MONGO_FLIGHT_COLLECTION"),
+	)
+
+	c := controllers.NewBaseController(collectionInstance)
 
 	v1 := r.Group("/api/v1")
 	{

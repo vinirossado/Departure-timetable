@@ -1,10 +1,15 @@
 package controllers
 
+import "go.mongodb.org/mongo-driver/mongo"
+
 type Controller struct {
+	mongoCollection *mongo.Collection
 }
 
-func NewController() *Controller {
-	return &Controller{}
+func NewBaseController(collection *mongo.Collection) *Controller {
+	return &Controller{
+		mongoCollection: collection,
+	}
 }
 
 // Message example
